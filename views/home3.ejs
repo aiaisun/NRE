@@ -1,0 +1,195 @@
+<%- include('parts/html_head') %>
+
+
+
+
+<div>
+
+  <div style="width:90%;margin:50px auto; text-align: center;">
+
+    <div class="input-group" style="width:20%;margin-top:10px">
+      <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+        <option selected>Project Condition Code</option>
+        <option value="CCP">CCP</option>
+        <option value="CCLTX">CCLTX</option>
+        <option value="CCType1">CCType1</option>
+        <option value="CCE">CCE</option>
+        <option value="CRP">CRP</option>
+        <option value="CRLTX">CRLTX</option>
+        <option value="CRType1">CRType1</option>
+        <option value="RCP">RCP</option>
+        <option value="RCLTX">RCLTX</option>
+        <option value="RCE">RCE</option>
+        <option value="RRP">RRP</option>
+        <option value="RRLTX">RRLTX</option>
+        <option value="RRE">RRE</option>
+      </select>
+
+    </div>
+    <div class='row' style="padding-left:15px">
+      <div class="input-group mb-3" style="width:20%;margin-top:10px; margin-right: 30px;">
+        <input type="text" id="ssDate" name="dates" class="form-control date" placeholder="SS DATE"
+          aria-label="Recipient's username" aria-describedby="button-addon2" value="">
+        <div class="input-group-append">
+
+          <button onclick="applyDate()" class="btn btn-secondary" type="button" id="button-addon2">SS Date
+            Apply</button>
+
+        </div>
+      </div>
+      <form method="POST" id="generate">
+        <div class="input-group mb-3" style="width:20%;margin-top:10px;">
+          <input id="generatebtn" type="submit" class="btn btn-outline-secondary" value="Generate">
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<div>
+  <table style="width:90%;margin:50px auto; text-align: center;">
+    <thead>
+      <tr>
+        <th>Gate A</th>
+        <th>Gate B</th>
+        <th>Gate C</th>
+        <th>PKO</th>
+        <th>DDS</th>
+        <th>BC</th>
+        <th>EVT</th>
+        <th>FVT</th>
+        <th>SIT</th>
+        <th>SVT</th>
+        <th>SS</th>
+        <th>SGA</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td id="gateA">
+          <p id="genDate0">123</p>
+          <input type="text" name="date" class="applyDate date form-control" id="gateAInput" tdid="gateA" value="">
+        </td>
+        <td id="gateB">
+          <p id="genDate1"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="gateBInput" tdid="gateB" value="">
+        </td>
+        <td id="gateC">
+          <p id="genDate2"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="gateCInput" tdid="gateC" value="">
+        </td>
+        <td id="PKO">
+          <p id="genDate3"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="PKOInput" tdid="PKO" value="">
+        </td>
+        <td id="DDS">
+          <p id="genDate4"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="DDSInput" tdid="DDS" value="">
+        </td>
+        <td id="BC">
+          <p id="genDate5"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="BCInput" tdid="BC" value="">
+        </td>
+        <td id="EVT">
+          <p id="genDate6"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="EVTInput" tdid="EVT" value="">
+        </td>
+        <td id="FVT">
+          <p id="genDate7"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="FVTInput" tdid="FVT" value="">
+        </td>
+        <td id="SIT">
+          <p id="genDate8"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="SITInput" tdid="SIT" value="">
+        </td>
+        <td id="SVT">
+          <p id="genDate9"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="SVTInput" tdid="SVT" value="">
+        </td>
+        <td id="SS" tdid="SS">
+          <p id="genDate10"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="SSCInput" tdid="SS" value="">
+        </td>
+        <td id="SGA">
+          <p id="genDate11"></p>
+          <input type="text" name="date" class="applyDate date form-control" id="SGAInput" tdid="SGA" value="">
+        </td>
+
+      </tr>
+      </form>
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+  $('.hideData').hide();
+  $('.applyDate').hide();
+  console.log($('#abd').text());
+  // $('p').hide();
+  // $('#ssDate').daterangepicker({
+  //   singleDatePicker: true,
+  //   showDropdowns: true,
+  //   minDate: "1/1/2020",
+  //   maxDate: "12/31/2030",
+  // }, function (start, end, label) {
+  //   const years = moment().diff(start, 'years');
+  // });
+
+  $('.date').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minDate: "1/1/2020",
+    maxDate: "12/31/2030",
+  }, function (start, end, label) {
+    const years = moment().diff(start, 'years');
+
+  });
+
+
+
+  function applyDate() {
+    // console.log($('#ssDate').val());
+    $('.applyDate').show();
+    const ssDate = $('#ssDate').val();
+    const month = ssDate.split('/')[0];
+    const day = ssDate.split('/')[1];
+    const year = ssDate.split('/')[2];
+    console.log(month, day, year);
+
+    $('#gateAInput').val(ssDate);
+    // $('td p').text("");
+    $('p').hide();
+  }
+
+  $('#generate').on('submit', function (e) {
+    e.preventDefault();
+    let currentURL = location.pathname;
+    $.ajax({
+      url: `${currentURL}/generate`,
+      type: 'POST',
+      data: new FormData(this),
+      contentType: false,//一定要加
+      cache: false,
+      processData: false,//一定要加
+      dataType: "json"
+    }).done(function (data) {
+      $('.applyDate').hide();
+      console.log(data);
+      // console.log($("td p"));
+      $('p').show();
+      for( let i = 0; i < $("td p").length; i++){
+        $(`#genDate${i}`).text(data.date[i]);
+        // console.log($("td p")[i].text());
+        // console.log($("td p")[i].append(data.date[i]));
+      }
+    });
+  });
+
+</script>
+
+
+
+<%- include('parts/html_script') %>
+<%- include('parts/html_foot') %>

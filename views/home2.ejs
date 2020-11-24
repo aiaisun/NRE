@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/style/link.css">
+    <link rel="stylesheet" type="text/css" href="/daterangepicker/css/daterangepicker.css" />
+
+
+    <script src="/lib/jquery-3.4.1.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/popper/popper.js"></script>
+    <script src="/lib/dateformat.js"></script>
+    <script src="/lib/echarts.min.js"></script>
+    <script type="text/javascript" src="/daterangepicker/js/moment.min.js"></script>
+    <script type="text/javascript" src="/daterangepicker/js/daterangepicker.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5 mb-5" style="widows: 400px;">
+        <input type="text" id="picker" class="form-control">
+    </div>
+
+    <script>
+        $('#picker').daterangepicker();
+    // $('#picker').daterangepicker({
+    //     singleDatePicker: true,
+    //     showDropdowns: true,
+    //     opens: 'right',
+    //     drops: 'down',
+    // });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<%- include('parts/html_head') %>
+
+
+
+
+<div>
+
+  <div style="width:80%;margin:50px auto; text-align: center;">
+
+    <div class="input-group" style="width:20%;margin-top:10px">
+      <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+        <option selected>Project Condition Code</option>
+        <option value="CCP">CCP</option>
+        <option value="CCLTX">CCLTX</option>
+        <option value="CCType1">CCType1</option>
+        <option value="CCE">CCE</option>
+        <option value="CRP">CRP</option>
+        <option value="CRLTX">CRLTX</option>
+        <option value="CRType1">CRType1</option>
+        <option value="RCP">RCP</option>
+        <option value="RCLTX">RCLTX</option>
+        <option value="RCE">RCE</option>
+        <option value="RRP">RRP</option>
+        <option value="RRLTX">RRLTX</option>
+        <option value="RRE">RRE</option>
+      </select>
+
+    </div>
+    <div class='row' style="padding-left:15px">
+      <div class="input-group mb-3" style="width:20%;margin-top:10px; margin-right: 30px;">
+        <input type="text" id="ssDate" name="dates" class="form-control date" placeholder="SS DATE"
+          aria-label="Recipient's username" aria-describedby="button-addon2" value="">
+        <div class="input-group-append">
+          <button onclick="applyDate()" class="btn btn-secondary" type="button" id="button-addon2">SS Date
+            Apply</button>
+
+        </div>
+      </div>
+      
+      <div class="input-group mb-3" style="width:20%;margin-top:10px;">
+        <button id="revisebtn" type="button" class="btn btn-outline-secondary" onclick="showInput()">Revise</button>
+        <button id="generatebtn" type="button" class="btn btn-outline-secondary" >Generate</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div>
+  <table style="width:80%;margin:50px auto; text-align: center;">
+    <thead>
+      <tr>
+        <th>Gate A</th>
+        <th>Gate B</th>
+        <th>Gate C</th>
+        <th>PKO</th>
+        <th>DDS</th>
+        <th>BC</th>
+        <th>EVT</th>
+        <th>FVT</th>
+        <th>SIT</th>
+        <th>SVT</th>
+        <th>SS</th>
+        <th>SGA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="gateA"  >
+          <span style="height:100%" class="applyDate" onclick="clickDate(this)" itemid="gateA"></span>
+          <span id="gateAspan2"></span>
+        </td>
+        <td id="gateB"></td>
+        <td id="gateC"></td>
+        <td id="PKO"></td>
+        <td id="DDS"></td>
+        <td id="BC"></td>
+        <td id="EVT"></td>
+        <td id="FVT"></td>
+        <td id="SIT"></td>
+        <td id="SVT"></td>
+        <td id="SS"  tdid="SS">
+          <p style="height:100%"> </p>
+          <!-- <input type="text" onchange="reviseDate(this)" class="hideData date" style="width:100px;height:20px;"
+            id="SSInput" tdid="SS" value=""> -->
+          <!-- <input type="text" id="SSInput" name="dates" class=" hideData date form-control date" tdid="SS"
+            placeholder="SS DATE" value=""> -->
+        </td>
+        <td id="SGA">
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+  $('.hideData').hide();
+  $('.applyDate').hide();
+  // $('#ssDate').daterangepicker({
+  //   singleDatePicker: true,
+  //   showDropdowns: true,
+  //   minDate: "1/1/2020",
+  //   maxDate: "12/31/2030",
+  // }, function (start, end, label) {
+  //   const years = moment().diff(start, 'years');
+  // });
+
+  $('.date').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: true,
+    minDate: "1/1/2020",
+    maxDate: "12/31/2030",
+  }, function (start, end, label) {
+    const years = moment().diff(start, 'years');
+    console.log($('#ssDate2').val());
+  });
+
+  function clickDate(which) {
+    alert('123');
+    console.log($(which).attr('itemid'));
+    const itemid = $(which).attr('itemid');
+    // console.log($(which));
+    const innerText = $(which).get(0).innerText;
+    $(`#${itemid}span2`).html("");
+    $(`#${itemid}span2`).append(`<input class="form-control">`);
+    // $(`#${id}`).append(innerText);
+    
+    const td = $(which).attr("tdid");
+    $(`#${td}Input`).val(innerText);
+    $(`#${td}Input`).show();
+    // document.getElementById(`${td}Input`).click();
+
+    // text input click 只能用在btn類
+    $(`#${td}Input`).focus();
+    $(`#test2`).focus();
+
+  };
+  // function reviseDate(which) {
+  //   console.log($(which).attr('tdid'));
+  //   const id = $(which).attr('tdid');
+  //   // console.log($(`${id}Input`).val());
+  //   // console.log($('#ssDate').val());
+  //   // console.log($('#ssDate2').val());
+  //   // $('.hideData').hide();
+  //   //把修改的數字覆蓋回去
+  // }
+
+
+  function applyDate() {
+    // console.log($('#ssDate').val());
+    $('.applyDate').show();
+    const ssDate = $('#ssDate').val();
+    $('td span').text('');
+    $('#gateA > span :first').append(ssDate);
+    $('#SS p').append(ssDate);
+  }
+
+
+</script>
+
+
+
+<%- include('parts/html_script') %>
+<%- include('parts/html_foot') %>
